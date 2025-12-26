@@ -1,6 +1,6 @@
-# Laravel
+# dog_app
 
-Laravel検証用
+Laravel検証用 App :dog:
 
 - Laravel: 12.42.0
 - PHP: 5.18.0
