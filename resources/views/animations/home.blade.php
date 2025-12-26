@@ -1,9 +1,11 @@
 @extends('layouts.animation')
 
 @section('content')
+
+  <!-- Free Area -->
   <div class="w-full bg-white rounded-2xl border">
 
-    <!-- animate-xxxクラス -->
+    <!-- Classes animate-xxx -->
     <div class="grid grid-cols-4 gap-4">
       <div class="bg-pink-200 border rounded-full text-center text-pink-700 m-4 p-4"><i class="fa-solid fa-dog mr-4 animate-spin"></i>spin</div>
       <div class="bg-pink-200 border rounded-full text-center text-pink-700 m-4 p-4"><i class="fa-solid fa-dog mr-4 animate-ping"></i>ping</div>
@@ -11,14 +13,14 @@
       <div class="bg-pink-200 border rounded-full text-center text-pink-700 m-4 p-4"><i class="fa-solid fa-dog mr-4 animate-bounce"></i>bounce</div>
     </div>
 
-    <!-- 右に走る(シンプル) -->
+    <!-- Run-1 -->
     <div class="flex flex-col items-center my-6">
       <div class="w-3/4 h-12 border bg-green-200 rounded-xl">
         <span id="puni-container" class="inline-block transition-transform duration-[1200ms] ease-in-out">
           <i id="puni-icon" class="fa-solid fa-dog text-3xl text-green-500 mt-2 ml-2 transition-transform duration-200"></i>
         </span>
       </div>
-      <!-- ぷにっとなるボタン -->
+      <!-- Puni Button -->
       <div class="">
         <button id="puni-button"class="bg-yellow-400 text-white px-6 py-2 m-4 rounded-full shadow-lg
                     transition-transform duration-200 hover:scale-110 active:scale-95">
@@ -27,14 +29,14 @@
       </div>
     </div>
 
-    <!-- 右に走って左に戻る -->
+    <!-- Run-2 -->
     <div class="flex flex-col items-center my-6">
       <div class="w-3/4 h-12 border bg-green-300 rounded-xl">
         <span id="run-container" class="inline-block transition-transform duration-[1200ms] ease-in-out">
           <i id="run-icon" class="fa-solid fa-dog text-3xl text-green-500 mt-2 ml-2 transition-transform duration-200"></i>
         </span>
       </div>
-      <!-- ぷにっとなるボタン -->
+      <!-- Run Button -->
       <div class="">
         <button id="run-button"class="bg-yellow-400 hover:bg-yellow-200 text-white px-6 py-2 m-4 rounded-full shadow-lg transition-color duration-200">
           ぷにっとボタン<i class="fa-solid fa-paw"></i>
@@ -74,4 +76,17 @@
     </div>
   </div>
 
+  <!-- Dog Walking -->
+  <div class="w-full min-h-screen flex flex-col gap-6 items-center bg-white border rounded-2xl mt-6">
+    
+    <h2 class="text-4xl font-bold mt-6">Dog Walking</h2>
+
+    <div class="w-256 h-128 flex flex-col justify-center items-center bg-green-50 rounded-2xl relative overflow-hidden">
+      <i id="walking-dog" class="fa-solid fa-dog text-2xl text-pink-500 transition-transform duration-150"></i>
+    </div>
+
+    <div class="flex gap-4">
+      <button id="" class=""><i class="fa-solid fa-font-awesome"></i></button>
+    </div>
+  </div>
 @endsection

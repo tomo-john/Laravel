@@ -72,4 +72,77 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dogIcon && colorSelect && colorDisplay) {
     colorSelect.addEventListener('change', updateDogIconColor);
   }
+
+  // Dog Walking
+
+  // 状態と位置を定義
+  const dog = document.getElementById('walking-dog');
+
+  let state = 'idle'; // idle | walk
+  let posX = 0;
+  let posY = 0;
+
+  const STEP = 10;
+
+  // 状態ごとのクラス管理
+  const stateClasses = {
+    idle: ['scale-100'],
+    walk: ['scale-110'],
+  };
+
+  function setState(newState) {
+    Object.values(stateClasses).flat().forEach(cls => {
+      dog.classList.remove(cls);
+    });
+
+    stateClasses[newState].forEach(cls => {
+      dog.classList.add(cls);
+    });
+
+    state = newState;
+  }
+
+  // 移動用の関数
+  function moveDog(dx, dy, direction = 'right') {
+    posX += dx;
+    posY += dy;
+
+    dog.style.transform = `
+      translate(${posX}px, ${posY}px)
+      scaleX(${direction === 'left' ? -1 : 1})
+    `;
+
+    setState('walk');
+
+    // 一定時間後に idle に戻す
+    clearTimeout(dog.idleTimer);
+    dog.idleTimer = setTimeout(() => {
+      setState('idle');
+    }, 150);
+  }
+
+  // キー入力を拾う
+  document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'l':
+        moveDog(STEP, 0, 'right');
+        breake;
+
+      case 'ArrowLeft':
+      case 'h':
+        moveDog(-STEP, 0, 'left');
+        breake;
+
+      case 'ArrowUp':
+      case 'j':
+        moveDog(0, -STEP);
+        breake;
+
+      case 'ArrowDown':
+      case 'k':
+        moveDog(0, STEP);
+        breake;
+    }
+  });
 });
