@@ -18,9 +18,9 @@ composer create-project laravel/laravel dog_app
 # MySQL設定(rootにて)
 sudo mysql -u root
 
-CREATE DATABASE laravel_test CHARACTER SET utf8mb4;
+CREATE DATABASE dog_app CHARACTER SET utf8mb4;
 # CREATE USER 'john'@'localhost' IDENTIFIED BY 'john1234'; # ユーザーはすでに作成済みの為不要
-GRANT ALL PRIVILEGES ON laravel_test.* TO 'john'@'localhost';
+GRANT ALL PRIVILEGES ON dog_app.* TO 'john'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -29,7 +29,7 @@ FLUSH PRIVILEGES;
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravel_test
+DB_DATABASE=dog_app
 DB_USERNAME=john
 DB_PASSWORD=john1234
 ```
