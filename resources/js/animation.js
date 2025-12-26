@@ -66,8 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const color = colorSelect.value;
 
     dogIcon.style.color = color;
-    colorDisplay.textContent = color || "whit";
+    colorDisplay.textContent = color || "white";
   }
 
-  colorSelect.addEventListener('change', updateDogIconColor);
+  if (dogIcon && colorSelect && colorDisplay) {
+    colorSelect.addEventListener('change', updateDogIconColor);
+  }
 });

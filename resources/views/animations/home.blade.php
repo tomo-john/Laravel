@@ -1,7 +1,7 @@
 @extends('layouts.animation')
 
 @section('content')
-  <div class="w-full min-h-screen border">
+  <div class="w-full bg-white rounded-2xl border">
 
     <!-- animate-xxxクラス -->
     <div class="grid grid-cols-4 gap-4">
@@ -44,7 +44,7 @@
   </div>
 
   <!-- Dog Icon Operation -->
-  <div class="w-full min-h-screen flex flex-col items-center gap-6 bg-white border rounded-2xl mt-6">
+  <div class="w-full flex flex-col items-center gap-6 bg-white border rounded-2xl mt-6">
 
     <h2 class="text-4xl font-bold mt-6">Dog Icon Operation</h2>
 
@@ -68,10 +68,10 @@
       </select>
     </div>
 
-    <div id="color-message" class="text-gray-400 text-sm">
+    <!-- 選択された色: -->
+    <div id="color-message" class="text-gray-400 text-sm mb-4">
       選択された色: <span id="current-color-name" class="font-mono">white</span>
     </div>
-    
   </div>
 
 @endsection
