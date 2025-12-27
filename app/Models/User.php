@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Dog
+     */
+    public function dogs()
+    {
+        return $this->hasMany(Dog::class);
+    }
 }

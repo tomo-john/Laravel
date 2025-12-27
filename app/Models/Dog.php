@@ -10,6 +10,12 @@ class Dog extends Model
     'name',
     'age',
     'color',
-    'favorite_food'
+    'favorite_food',
+    'user_id',
   ];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Dog;
 
 class DogController extends Controller
@@ -10,7 +11,9 @@ class DogController extends Controller
   // index
   public function index()
   {
-    $dogs = Dog::all();
+    // $dogs = Dog::all();
+    // $dogs = Dog::where('user_id', Auth::id())->get();
+    $dogs = auth()->user()->dogs;
     return view('dogs.index', compact('dogs'));
   }
   
@@ -24,14 +27,15 @@ class DogController extends Controller
   // store
   public function store(Request $request)
   {
-    $validated = $request->validate(
-      [
+    $validated = $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'age' => ['required', 'integer', 'min:0', 'max:100'],
         'color' => ['required', 'in:' . implode(',', array_keys(config('dog.colors')))],
         'favorite_food' => ['nullable', 'string', 'max:30'],
-      ]
-    );
+    ]);
+
+    $validated['user_id'] = Auth::id();
+
     Dog::create($validated);
     return redirect()->route('dogs.index')->with('success', '登録しました');
   }
