@@ -81,7 +81,7 @@
     
     <h2 class="text-4xl font-bold mt-6">Dog Walking</h2>
 
-    <div class="w-256 h-128 flex flex-col justify-center items-center bg-green-50 rounded-2xl relative overflow-hidden">
+    <div class="w-[1024px] h-[512px] flex flex-col justify-center items-center bg-green-50 rounded-2xl relative overflow-hidden">
       <i id="walking-dog" class="fa-solid fa-dog text-2xl text-pink-500 transition-transform duration-150"></i>
     </div>
 

@@ -127,22 +127,22 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'ArrowRight':
       case 'l':
         moveDog(STEP, 0, 'right');
-        breake;
+        break;
 
       case 'ArrowLeft':
       case 'h':
         moveDog(-STEP, 0, 'left');
-        breake;
+        break;
 
       case 'ArrowUp':
       case 'j':
         moveDog(0, -STEP);
-        breake;
+        break;
 
       case 'ArrowDown':
       case 'k':
         moveDog(0, STEP);
-        breake;
+        break;
     }
   });
 });
