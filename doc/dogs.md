@@ -139,3 +139,111 @@ return new class extends Migration
 php artisan migrate
 ```
 
+---
+
+# user_id を追加する
+
+### マイグレーション
+
+```bash
+php artisan make:migration add_user_id_to_dogs_table --table=dog
+```
+
+```php
+<?php
+    public function up(): void
+    {
+        Schema::table('dogs', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('dogs', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id']);
+        });
+    }
+```
+
+=> マイグレーション実行
+
+### Dogモデルにリレーションを追加
+
+```php
+<?php
+class Dog extends Model
+{
+  protected $fillable = [
+    'name',
+    'age',
+    'color',
+    'favorite_food',
+    'user_id',
+  ];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+}
+```
+
+### Userモデルにも逆方向を追加
+
+```php
+<?php
+// 最後に追記した
+public function dogs()
+{
+    return $this->hasMany(Dog::class);
+}
+```
+
+### store(コントローラ)でログイン中ユーザーを紐づける
+
+```php
+<?php
+// コントローラの上部にこの追加を忘れない
+use Illuminate\Support\Facades\Auth;
+```
+
+```php
+<?php
+// store
+public function store(Request $request)
+{
+  $validated = $request->validate([
+      'name' => ['required', 'string', 'max:255'],
+      'age' => ['required', 'integer', 'min:0', 'max:100'],
+      'color' => ['required', 'in:' . implode(',', array_keys(config('dog.colors')))],
+      'favorite_food' => ['nullable', 'string', 'max:30'],
+  ]);
+
+  $validated['user_id'] = Auth::id();
+
+  Dog::create($validated);
+  return redirect()->route('dogs.index')->with('success', '登録しました');
+}
+```
+
+- `user_id` はフォームから送らせない
+- サーバー側で`Auth::id()`を入れる
+
+### indexに表示するdogsをユーザーと紐づける
+
+```php
+<?php
+// index
+public function index()
+{
+  // $dogs = Dog::all();
+  // $dogs = Dog::where('user_id', Auth::id())->get();
+  $dogs = auth()->user()->dogs;
+  return view('dogs.index', compact('dogs'));
+}
+```
+
+Dogモデル、Userモデルそれぞれでリレーションを張ったのでこの書き方ができる。
+
