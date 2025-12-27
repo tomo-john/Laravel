@@ -13,6 +13,8 @@
   <header class="bg-gray-800 text-gray-100 shadow">
     <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold">Dogs</h1>
+      <span class="texs-xs">{{ Auth::user()->name }}</span>
+      <span class="texs-xs">{{ auth()->user()->email }}</span>
       <nav class="space-x-4 text-sm">
         <a href="{{ route('dogs.index') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">index</a>
         <a href="{{ route('dogs.create') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">create</a>

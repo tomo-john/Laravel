@@ -26,13 +26,15 @@ Route::get('/test', function() {
 Route::get('/dogs/special', function() {
     return view('dogs.special');
 })->name('dogs.special');
-Route::get('dogs', [DogController::class, 'index'])->name('dogs.index');
-Route::get('dogs/create', [DogController::class, 'create'])->name('dogs.create');
-Route::post('dogs', [DogController::class, 'store'])->name('dogs.store');
-Route::get('dogs/{dog}', [DogController::class, 'show'])->name('dogs.show');
-Route::get('dogs/{dog}/edit', [DogController::class, 'edit'])->name('dogs.edit');
-Route::put('dogs/{dog}', [DogController::class, 'update'])->name('dogs.update');
-Route::delete('dogs/{dog}', [DogController::class, 'destroy'])->name('dogs.destroy');
+Route::middleware('auth')->group(function () {
+  Route::get('dogs', [DogController::class, 'index'])->name('dogs.index');
+  Route::get('dogs/create', [DogController::class, 'create'])->name('dogs.create');
+  Route::post('dogs', [DogController::class, 'store'])->name('dogs.store');
+  Route::get('dogs/{dog}', [DogController::class, 'show'])->name('dogs.show');
+  Route::get('dogs/{dog}/edit', [DogController::class, 'edit'])->name('dogs.edit');
+  Route::put('dogs/{dog}', [DogController::class, 'update'])->name('dogs.update');
+  Route::delete('dogs/{dog}', [DogController::class, 'destroy'])->name('dogs.destroy');
+});
 
 Route::resource('tasks', TaskController::class);
 Route::resource('monsters', MonsterController::class);
