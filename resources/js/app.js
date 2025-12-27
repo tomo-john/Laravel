@@ -1,4 +1,8 @@
 import './bootstrap';
+import './dog'
+import './tailwind'
+import './animation'
+import './test'
 
 import Alpine from 'alpinejs';
 
