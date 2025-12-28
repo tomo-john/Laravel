@@ -11,9 +11,13 @@ class DogController extends Controller
   // index
   public function index()
   {
-    // $dogs = Dog::all();
-    // $dogs = Dog::where('user_id', Auth::id())->get();
-    $dogs = auth()->user()->dogs;
+    $this->authorize('viewAny', Dog::class);
+
+    if (auth()->user()->isAdmin()) {
+      $dogs = Dog::all();
+    } else {
+      $dogs = auth()->user()->dogs;
+    }
     return view('dogs.index', compact('dogs'));
   }
   
