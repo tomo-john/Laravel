@@ -20,6 +20,7 @@
         <a href="{{ route('dogs.create') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">create</a>
         <a href="{{ route('dogs.special') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">special</a>
         <a href="{{ route('main_menu') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">menu</a>
+        <a href="{{ route('welcome') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">Laravel</a>
       </nav>
     </div>
   </header>

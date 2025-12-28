@@ -5,7 +5,7 @@
 
   <header class="mb-12 text-center">
     <h1 class="text-5xl font-black text-indigo-600 mb-3 tracking-tight">Laravel App</h1>
-    <p class="text-gray-500 font-medium">🐶learning laravel🐶</p>
+    <a href="{{ route('welcome') }}" class="text-gray-500 font-medium">🐶learning laravel🐶</a>
   </header>
 
   <div class="text-center mb-8">
