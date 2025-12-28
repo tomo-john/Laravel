@@ -1,3 +1,4 @@
+*.swap
 *.log
 .DS_Store
 .env
