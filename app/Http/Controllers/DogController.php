@@ -49,11 +49,15 @@ class DogController extends Controller
   // edit
   public function edit(Dog $dog)
   {
+    $this->authorize('update', $dog);
+
     return view('dogs.edit', compact('dog'));
   }
   // update
   public function update(Request $request, Dog $dog)
   {
+    $this->authorize('update', $dog);
+
     $validated = $request->validate(
       [
         'name' => ['required', 'string', 'max:255'],
@@ -68,6 +72,8 @@ class DogController extends Controller
   // destroy
   public function destroy(Dog $dog)
   {
+    $this->authorize('delete', $dog);
+
     $dog->delete();
     return redirect()->route('dogs.index')->with('success', '削除しました');
   }

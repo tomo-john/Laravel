@@ -49,19 +49,24 @@
 
     <!-- アクションエリア(編集・削除) -->
     <div class="flex justify-between items-center gap-2">
-      <a href="{{ route('dogs.edit', $dog) }}"
-         class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold
-                px-4 py-3 rounded-xl transition line-clamp-1">
-        <i class="fa-solid fa-pen mr-1"></i> 編集する
-      </a>
-      <form action="{{ route('dogs.destroy', $dog) }}" method="post" onsubmit="return confirm('本当に削除しますか？🐶');">
-        @csrf
-        @method('DELETE')
-        <button class="w-full bg-white border border-red-100 text-red-400 hover:bg-red-50 text-sm font-bold
-                       px-4 py-3 rounded-xl transition line-clamp-1">
-          <i class="fa-solid fa-trash-can"></i> 削除する
-        </button>
-      </form>
+      @can ('update', $dog)
+        <a href="{{ route('dogs.edit', $dog) }}"
+           class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-bold
+                  px-4 py-3 rounded-xl transition line-clamp-1">
+          <i class="fa-solid fa-pen mr-1"></i> 編集する
+        </a>
+      @endcan
+
+      @can ('delete', $dog)
+        <form action="{{ route('dogs.destroy', $dog) }}" method="post" onsubmit="return confirm('本当に削除しますか？🐶');">
+          @csrf
+          @method('DELETE')
+          <button class="w-full bg-white border border-red-100 text-red-400 hover:bg-red-50 text-sm font-bold
+                         px-4 py-3 rounded-xl transition line-clamp-1">
+            <i class="fa-solid fa-trash-can"></i> 削除する
+          </button>
+        </form>
+      @endcan
     </div>
   </div>
 
