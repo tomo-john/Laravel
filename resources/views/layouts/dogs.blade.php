@@ -12,15 +12,33 @@
   <!-- Dogs Header -->
   <header class="bg-gray-800 text-gray-100 shadow">
     <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold">Dogs</h1>
-      <span class="texs-xs">{{ Auth::user()->name }}</span>
-      <span class="texs-xs">{{ auth()->user()->email }}</span>
-      <nav class="space-x-4 text-sm">
-        <a href="{{ route('dogs.index') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">index</a>
-        <a href="{{ route('dogs.create') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">create</a>
-        <a href="{{ route('dogs.special') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">special</a>
-        <a href="{{ route('main_menu') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">menu</a>
-        <a href="{{ route('welcome') }}" class="bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl px-4 py-2">Laravel</a>
+
+      <div class="flex items-center space-x-6">
+        <h1 class="text-xl font-bold">Dogs</h1>
+
+        <div class="flex flex-col text-xs text-gray-400">
+          <span class="font-semibold text-gray-200">{{ Auth::user()->name }}</span>
+          <span>{{ auth()->user()->email }}</span>
+        </div>
+
+        @if (auth()->user()->isAdmin())
+          <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold
+                      bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-sm animate-pulse">
+            <span class="mr-1"><i class="fa-solid fa-crown"></i></span>
+            Admin Mode 🐶
+          </div>
+        @endif
+      </div>
+
+      <nav class="space-x-4 text-sm flex items-center">
+        @php
+          $navClass = "inline-block w-24 text-center bg-gray-700 hover:bg-gray-600 transition duration-400 ease-in-out rounded-xl py-2";
+        @endphp
+        <a href="{{ route('dogs.index') }}" class="{{ $navClass }}">Index</a>
+        <a href="{{ route('dogs.create') }}" class="{{ $navClass }}">Create</a>
+        <a href="{{ route('dogs.special') }}" class="{{ $navClass }}">Special</a>
+        <a href="{{ route('main_menu') }}" class="{{ $navClass }}">Main Menu</a>
+        <a href="{{ route('welcome') }}" class="{{ $navClass }}">Laravel</a>
       </nav>
     </div>
   </header>

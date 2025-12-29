@@ -22,10 +22,6 @@
     </div>
   @endif
 
-  @if (auth()->user()->isAdmin())
-    <p>管理者です🐶</p>
-  @endif
-
   <!-- Dogs List -->
   @forelse ($dogs as $dog)
     <div class="mb-4 p-5 bg-white rounded-2xl shadow-sm
