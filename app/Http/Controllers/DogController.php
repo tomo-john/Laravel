@@ -55,17 +55,7 @@ class DogController extends Controller
   // update
   public function update(DogStoreRequest $request, Dog $dog)
   {
-    $this->authorize('update', $dog);
-
-    $validated = $request->validate(
-      [
-        'name' => ['required', 'string', 'max:255'],
-        'age' => ['required', 'integer', 'min:0', 'max:100'],
-        'color' => ['required', 'in:' . implode(',', array_keys(config('dog.colors')))],
-        'favorite_food' => ['nullable', 'string', 'max:30'],
-      ]
-    );
-    $dog->update($validated);
+    $dog->update($request->validated());
     return redirect()->route('dogs.show', $dog)->with('success', '更新しました');
   }
   // destroy
