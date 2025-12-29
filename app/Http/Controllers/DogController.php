@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DogStoreRequest;
 use App\Models\Dog;
 
 class DogController extends Controller
@@ -29,15 +30,9 @@ class DogController extends Controller
   }
   
   // store
-  public function store(Request $request)
+  public function store(DogStoreRequest $request)
   {
-    $validated = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'age' => ['required', 'integer', 'min:0', 'max:100'],
-        'color' => ['required', 'in:' . implode(',', array_keys(config('dog.colors')))],
-        'favorite_food' => ['nullable', 'string', 'max:30'],
-    ]);
-
+    $validated = $request->validated();
     $validated['user_id'] = Auth::id();
 
     Dog::create($validated);
@@ -58,7 +53,7 @@ class DogController extends Controller
     return view('dogs.edit', compact('dog'));
   }
   // update
-  public function update(Request $request, Dog $dog)
+  public function update(DogStoreRequest $request, Dog $dog)
   {
     $this->authorize('update', $dog);
 
