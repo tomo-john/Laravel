@@ -44,3 +44,14 @@ npm install
 
 => viewファイルのヘッダーに`@vite('resources/css/app.css')``
 
+# 外部アクセス可能で起動
+
+```
+php artisan serve --host=0.0.0.0 --port=8000
+```
+
+```bash
+# 自IP確認
+ifconfig | grep inet
+```
+
