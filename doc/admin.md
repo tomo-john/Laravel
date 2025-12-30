@@ -47,6 +47,8 @@ public function isAdmin(): bool
 
 `protected $fillable`に`role`も追加しておいた。
 
+=> 後から: これはセキュリティ的にNGなので、後で削除した🐶
+
 ### Policyで管理者は全部OKにする
 
 今回は`DogPolicy.php`に追加:
